@@ -1,25 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import { Container, Card } from './components';
 
-function App() {
+export function App() {
+  const [ characters, setCharacters ] = useState(null);
+  const [ isFetching, setIsFetching ] = useState(false);
+
+  const apiURL = "https://rickandmortyapi.com/api/character/";
+
+  const fetchData = async (url) => {
+    setIsFetching(true);
+    axios.get(url)
+      .then(({ data }) => {
+        setIsFetching(false);
+        setCharacters(data.results);
+      })
+      .catch(e => console.error(e));
+  }
+
+  useEffect(() => {
+    fetchData(apiURL);
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {isFetching && (
+        <h1>Loading..</h1>
+      )}
+
+      <Container>
+        {characters && characters.map((props) =>
+          <Card
+            key={props.id}
+            {...props}
+          />
+        )}
+      </Container>
+    </>
   );
 }
-
-export default App;
