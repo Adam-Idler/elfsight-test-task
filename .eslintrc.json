@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "react-app",
+    "plugin:react/jsx-runtime",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "settings": {
+    "react": {
+      "versions": "detect"
+    }
+  }
+}
