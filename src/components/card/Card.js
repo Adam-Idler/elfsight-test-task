@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { CardStatus } from './CardStatus';
-import { CardTitle } from './CardTitle';
+import { CardInfo } from './CardInfo';
 
 const StyledCard = styled.div`
   display: flex;
@@ -8,6 +7,13 @@ const StyledCard = styled.div`
   background: #263750;
   margin-bottom: 20px;
   border-radius: 10px;
+  transition: transform 0.3s, box-shadow 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+    box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 const CardImg = styled.img`
@@ -15,24 +21,11 @@ const CardImg = styled.img`
   border-radius: 10px 0 0 10px;
 `;
 
-const CardInfo = styled.div`
-  width: calc(100% - 200px);
-  padding: 8px;
-  margin-left: 10px;
-  display: flex;
-  flex-direction: column;
-  color: #fff;
-`;
-
 export function Card({ id, status, name, species, type, gender, image }) {
   return (
     <StyledCard key={id}>
       <CardImg src={image} alt={name} />
-
-      <CardInfo>
-        <CardTitle name={name} gender={gender} />
-        <CardStatus status={status} species={species} />
-      </CardInfo>
+      <CardInfo name={name} gender={gender} status={status} species={species} />
     </StyledCard>
   );
 }

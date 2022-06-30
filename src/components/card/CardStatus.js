@@ -13,8 +13,8 @@ const StyledCardStatus = styled.span`
     content: '';
     display: block;
     margin-right: 8px;
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background-color: ${({ status }) => {
       switch (status) {
