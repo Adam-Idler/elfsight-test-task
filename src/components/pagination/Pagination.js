@@ -32,6 +32,7 @@ export function Pagination({ pages, setApiURL }) {
   const [activePage, setActivePage] = useState(0);
 
   const pageClickHandler = (index) => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     setActivePage(index);
     setApiURL(pages[index].pageURL);
   };
