@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Container, Card } from './components';
 import { Title } from './components/common/Title';
+import { Loader } from './components/Loader';
 import { Pagination } from './components/pagination/Pagination';
 
 export function App() {
@@ -42,9 +43,9 @@ export function App() {
     <>
       <Title>Characters List</Title>
 
-      <Container>
+      <Container isFetching={isFetching}>
         {isFetching ? (
-          <h1>Loading..</h1>
+          <Loader />
         ) : (
           <>
             {characters &&

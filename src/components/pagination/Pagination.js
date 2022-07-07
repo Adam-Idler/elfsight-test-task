@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 const StyledPagination = styled.div`
   margin: 30px auto 0;
+  align-self: flex-end;
 `;
 
 const Page = styled.span`
