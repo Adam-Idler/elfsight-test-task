@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 const CardStatusContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
 `;
 
 const StyledCardStatus = styled.span`
@@ -30,13 +31,19 @@ const StyledCardStatus = styled.span`
 `;
 
 const CardSpecies = styled.span``;
+const CardType = styled.p`
+  margin-top: 20px;
+  width: 100%;
+  color: #ddd;
+`;
 
-export function CardStatus({ status, species }) {
+export function CardStatus({ status, species, type }) {
   return (
     <CardStatusContainer>
       <StyledCardStatus status={status}>{status}</StyledCardStatus>
       &nbsp;-&nbsp;
       <CardSpecies>{species}</CardSpecies>
+      {type && <CardType>{type}</CardType>}
     </CardStatusContainer>
   );
 }

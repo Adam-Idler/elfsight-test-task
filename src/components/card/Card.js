@@ -1,13 +1,20 @@
 import styled from 'styled-components';
 import { CardInfo } from './CardInfo';
+import { CardStatus } from './CardStatus';
+import { CardTitle } from './CardTitle';
 
 const StyledCard = styled.div`
   display: flex;
-  width: 48%;
+  width: ${({ _width }) => _width};
   background: #263750;
-  margin-bottom: 20px;
   border-radius: 10px;
   transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 20px;
+
+  &:nth-last-child(${({ _width }) =>
+        '-n + ' + Math.floor(100 / _width.replace('%', ''))}) {
+    margin-bottom: 0;
+  }
 
   &:hover {
     cursor: pointer;
@@ -23,9 +30,12 @@ const CardImg = styled.img`
 
 export function Card({ id, status, name, species, type, gender, image }) {
   return (
-    <StyledCard key={id}>
+    <StyledCard _width="48%" key={id}>
       <CardImg src={image} alt={name} />
-      <CardInfo name={name} gender={gender} status={status} species={species} />
+      <CardInfo>
+        <CardTitle name={name} gender={gender} />
+        <CardStatus status={status} species={species} type={type} />
+      </CardInfo>
     </StyledCard>
   );
 }

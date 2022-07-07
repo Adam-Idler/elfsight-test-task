@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { CardStatus } from './CardStatus';
-import { CardTitle } from './CardTitle';
 
 const StyledCardInfo = styled.div`
   width: calc(100% - 200px);
@@ -11,11 +9,6 @@ const StyledCardInfo = styled.div`
   color: #fff;
 `;
 
-export function CardInfo({ name, gender, status, species }) {
-  return (
-    <StyledCardInfo>
-      <CardTitle name={name} gender={gender} />
-      <CardStatus status={status} species={species} />
-    </StyledCardInfo>
-  );
+export function CardInfo({ children }) {
+  return <StyledCardInfo>{children}</StyledCardInfo>;
 }

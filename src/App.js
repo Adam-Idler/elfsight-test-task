@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Container, Card } from './components';
+import { Title } from './components/common/Title';
 
 export function App() {
   const [characters, setCharacters] = useState(null);
@@ -25,6 +26,8 @@ export function App() {
 
   return (
     <>
+      <Title>Characters List</Title>
+
       <Container>
         {isFetching && <h1>Loading..</h1>}
 

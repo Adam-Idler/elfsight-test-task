@@ -6,4 +6,5 @@ export const Container = styled.div`
   justify-content: space-between;
   max-width: 80%;
   margin: 0 auto;
+  padding: 20px 0;
 `;
