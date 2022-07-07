@@ -51,7 +51,7 @@ export function App() {
               characters.map((props) => <Card key={props.id} {...props} />)}
           </>
         )}
-        
+
         <Pagination pages={pages} setApiURL={setApiURL} />
       </Container>
     </>
