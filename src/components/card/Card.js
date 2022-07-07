@@ -12,7 +12,7 @@ const StyledCard = styled.div`
   margin-bottom: 20px;
 
   &:nth-last-child(${({ _width }) =>
-        '-n + ' + Math.floor(100 / _width.replace('%', ''))}) {
+        '-n + ' + Math.ceil(100 / _width.replace('%', ''))}) {
     margin-bottom: 0;
   }
 
