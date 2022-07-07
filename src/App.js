@@ -1,9 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Container, Card } from './components';
-import { Title } from './components/common/Title';
-import { Loader } from './components/Loader';
-import { Pagination } from './components/pagination/Pagination';
+import { Container, Card, Title, Loader, Pagination } from './components';
 
 export function App() {
   const [characters, setCharacters] = useState(null);

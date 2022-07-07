@@ -1,7 +1,5 @@
 import styled from 'styled-components';
-import { CardInfo } from './CardInfo';
-import { CardStatus } from './CardStatus';
-import { CardTitle } from './CardTitle';
+import { CardInfo, CardStatus, CardTitle } from './';
 
 const StyledCard = styled.div`
   display: flex;
