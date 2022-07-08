@@ -8,12 +8,13 @@ const CardTitleContainer = styled.div`
 `;
 const StyledCardTitle = styled.h2`
   margin-right: 8px;
+  transition: color 0.3s;
 `;
 
 export function CardTitle({ name, gender }) {
   return (
     <CardTitleContainer>
-      <StyledCardTitle>{name}</StyledCardTitle>
+      <StyledCardTitle className="card-title">{name}</StyledCardTitle>
       <GenderIcon gender={gender} />
     </CardTitleContainer>
   );

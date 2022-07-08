@@ -6,6 +6,7 @@ export function App() {
   const [characters, setCharacters] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const [info, setInfo] = useState({});
+  const [filters, setFilters] = useState({});
   const [apiURL, setApiURL] = useState(
     'https://rickandmortyapi.com/api/character/'
   );
@@ -18,6 +19,15 @@ export function App() {
       .then(({ data }) => {
         setIsFetching(false);
         setCharacters(data.results);
+        setFilters((prevState) => ({
+          ...prevState,
+          ...{
+            status: ['alive', 'dead', 'unknown'],
+            species: [...new Set(data.results.map((item) => item.species))],
+            type: [...new Set(data.results.map((item) => item.type))],
+            gender: ['female', 'male', 'genderless', 'unknown']
+          }
+        }));
         setInfo(data.info);
       })
       .catch((e) => console.error(e));

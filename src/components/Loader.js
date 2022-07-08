@@ -1,12 +1,12 @@
 import styled from 'styled-components';
+import portal from '../assets/green-portal.png';
 
 export const Loader = styled.div`
   margin: auto;
-  border: 16px solid #f3f3f3;
-  border-top: 16px solid #ff9800;
-  border-radius: 50%;
-  width: 130px;
-  height: 130px;
+  background: url(${portal}) center no-repeat;
+  background-size: cover;
+  width: 200px;
+  height: 200px;
   animation: spin 2s linear infinite;
 
   @keyframes spin {
