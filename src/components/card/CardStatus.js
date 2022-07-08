@@ -20,7 +20,7 @@ const StyledCardStatus = styled.span`
     background-color: ${({ status }) => {
       switch (status) {
         case 'Alive':
-          return '#5df8d0';
+          return '#83bf46';
         case 'Dead':
           return '#ff5152';
         default:

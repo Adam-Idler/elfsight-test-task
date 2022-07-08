@@ -19,6 +19,10 @@ const StyledCard = styled.div`
     transform: scale(1.01);
     box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.2);
   }
+
+  &:hover .card-title {
+    color: #83bf46;
+  }
 `;
 
 const CardImg = styled.img`

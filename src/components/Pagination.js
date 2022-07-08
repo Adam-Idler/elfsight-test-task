@@ -15,10 +15,10 @@ const Page = styled.span`
   transition: color 0.2s;
 
   &:hover {
-    color: #ff9800;
+    color: #83bf46;
   }
 
-  ${({ active }) => active && 'color: #ff9800;'}
+  ${({ active }) => active && 'color: #83bf46;'}
 `;
 
 const Ellipsis = styled(Page)`
