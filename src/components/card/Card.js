@@ -3,14 +3,13 @@ import { CardInfo, CardStatus, CardTitle } from './';
 
 const StyledCard = styled.div`
   display: flex;
-  width: ${({ _width }) => _width};
+  width: ${window.screen.width < 930 ? '100%' : '48%'};
   background: #263750;
   border-radius: 10px;
   transition: transform 0.3s, box-shadow 0.3s;
   margin-bottom: 20px;
 
-  &:nth-last-child(${({ _width }) =>
-        '-n + ' + Math.ceil(100 / _width.replace('%', ''))}) {
+  &:nth-last-child(${window.screen.width < 930 ? '1' : '2'}) {
     margin-bottom: 0;
   }
 
@@ -26,7 +25,7 @@ const StyledCard = styled.div`
 `;
 
 const CardImg = styled.img`
-  max-width: 200px;
+  max-width: ${window.screen.width < 450 ? '150px' : '200px'};
   border-radius: 10px 0 0 10px;
 `;
 
@@ -41,10 +40,10 @@ export function Card({
   onClickHandler
 }) {
   return (
-    <StyledCard _width="48%" key={id} onClick={onClickHandler}>
+    <StyledCard key={id} onClick={onClickHandler}>
       <CardImg src={image} alt={name} />
       <CardInfo>
-        <CardTitle name={name} gender={gender} />
+        <CardTitle name={name} gender={gender} className="card-title" />
         <CardStatus status={status} species={species} type={type} />
       </CardInfo>
     </StyledCard>

@@ -31,15 +31,17 @@ const StyledCardStatus = styled.span`
 `;
 
 const CardSpecies = styled.span``;
+
 const CardType = styled.p`
   margin-top: 20px;
   width: 100%;
   color: #ddd;
+  font-size: 16px;
 `;
 
-export function CardStatus({ status, species, type }) {
+export function CardStatus({ status, species, type, className }) {
   return (
-    <CardStatusContainer>
+    <CardStatusContainer className={className}>
       <StyledCardStatus status={status}>{status}</StyledCardStatus>
       &nbsp;-&nbsp;
       <CardSpecies>{species}</CardSpecies>

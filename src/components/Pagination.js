@@ -2,8 +2,8 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledPagination = styled.div`
-  margin: 30px auto 0;
-  align-self: flex-end;
+  width: 100%;
+  text-align: center;
 `;
 
 const Page = styled.span`

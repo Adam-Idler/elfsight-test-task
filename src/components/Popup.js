@@ -1,14 +1,32 @@
 import styled from 'styled-components';
+import { CardStatus, CardTitle } from './card';
+
+const PopupTitle = styled(CardTitle)`
+  font-size: 22px;
+  justify-content: center;
+  margin-top: 30px;
+`;
+
+const PopupStatus = styled(CardStatus)`
+  font-size: 20px;
+  justify-content: center;
+
+  & p {
+    text-align: center;
+    margin-top: 10px;
+  }
+`;
 
 const PopupContainer = styled.div`
   position: fixed;
   background: rgba(0, 0, 0, 0.4);
   width: 100%;
   height: 100vh;
+  color: #fff;
   top: 0;
   left: 0;
   opacity: 0;
-  visible: none;
+  visibility: hidden;
   pointer-events: none;
   transition: opacity 0.3s, visible 0.3s;
 
@@ -16,7 +34,7 @@ const PopupContainer = styled.div`
     if (visible) {
       return `
         opacity: 1;
-        visible: initial;
+        visibility: initial;
         pointer-events: all;
       `;
     }
@@ -25,22 +43,26 @@ const PopupContainer = styled.div`
 
 const StyledPopup = styled.div`
   position: relative;
-  width: 60%;
+  width: 40%;
   margin: 0 auto;
   height: auto;
-  max-height: 70vh;
+  max-height: 90vh;
   margin-top: calc(15vh - 20px);
   background: #263750;
   border-radius: 15px;
   padding: 20px;
-  border: 2px solid #5df8d0;
+  border: 2px solid #83bf46;
   overflow: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const CloseIcon = styled.div`
   cursor: pointer;
   position: fixed;
-  right: calc(20% - 10px);
+  right: calc(30% - 10px);
   top: calc(15vh - 30px);
   width: 30px;
   height: 30px;
@@ -48,7 +70,7 @@ const CloseIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #5df8d0aa;
+  background: #83bf46aa;
 
   &:before,
   &:after {
@@ -71,12 +93,23 @@ const CloseIcon = styled.div`
   }
 `;
 
-export function Popup({ visible, content, onClickHandler }) {
+const PopupImage = styled.img`
+  display: block;
+  margin: 0 auto;
+  max-width: 300px;
+  max-height: 300px;
+  object-fit: cover;
+`;
+
+export function Popup({ visible, content = {}, onClickHandler }) {
+  const { name, gender, image, status, species, type } = content;
   return (
-    <PopupContainer visible={visible} onClick={onClickHandler}>
+    <PopupContainer onClick={onClickHandler} visible={visible}>
       <StyledPopup>
         <CloseIcon onClick={onClickHandler} />
-        {content}
+        <PopupImage src={image?.replace('../', '')} alt={name} />
+        <PopupTitle name={name} gender={gender} />
+        <PopupStatus status={status} species={species} type={type} />
       </StyledPopup>
     </PopupContainer>
   );

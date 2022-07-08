@@ -6,7 +6,7 @@ import { Popup } from './components/Popup';
 export function App() {
   const [characters, setCharacters] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [popupSettings, setPopupSettings] = useState({ visible: false });
   const [info, setInfo] = useState({});
   const [filters, setFilters] = useState({});
   const [apiURL, setApiURL] = useState(
@@ -14,7 +14,15 @@ export function App() {
   );
   const pages = [];
 
-  const togglePopup = () => setIsOpen(!isOpen);
+  const togglePopup = (e) => {
+    if (e.currentTarget !== e.target) return;
+
+    setPopupSettings((prevState) => ({
+      ...prevState,
+      visible: !prevState.visible
+    }));
+    document.body.style.overflow = !popupSettings.visible ? 'hidden' : 'auto';
+  };
 
   const fetchData = async (url) => {
     setIsFetching(true);
@@ -62,20 +70,21 @@ export function App() {
             {characters &&
               characters.map((props) => (
                 <Card
-                  onClickHandler={() => setIsOpen(true)}
+                  onClickHandler={(e) => {
+                    togglePopup(e);
+                    setPopupSettings({ visible: true, content: { ...props } });
+                  }}
                   key={props.id}
                   {...props}
                 />
               ))}
-
-            <Popup
-              visible={isOpen}
-              onClickHandler={togglePopup}
-              content={<h1>Контент</h1>}
-            />
           </>
         )}
-
+        <Popup
+          visible={popupSettings.visible}
+          content={popupSettings.content}
+          onClickHandler={togglePopup}
+        />
         <Pagination pages={pages} setApiURL={setApiURL} />
       </Container>
     </>
