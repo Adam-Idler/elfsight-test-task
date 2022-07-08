@@ -1,15 +1,19 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Container, Card, Title, Loader, Pagination } from './components';
+import { Popup } from './components/Popup';
 
 export function App() {
   const [characters, setCharacters] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [info, setInfo] = useState({});
   const [apiURL, setApiURL] = useState(
     'https://rickandmortyapi.com/api/character/'
   );
   const pages = [];
+
+  const togglePopup = () => setIsOpen(!isOpen);
 
   const fetchData = async (url) => {
     setIsFetching(true);
@@ -46,7 +50,19 @@ export function App() {
         ) : (
           <>
             {characters &&
-              characters.map((props) => <Card key={props.id} {...props} />)}
+              characters.map((props) => (
+                <Card
+                  onClickHandler={() => setIsOpen(true)}
+                  key={props.id}
+                  {...props}
+                />
+              ))}
+
+            <Popup
+              visible={isOpen}
+              onClickHandler={togglePopup}
+              content={<h1>Контент</h1>}
+            />
           </>
         )}
 

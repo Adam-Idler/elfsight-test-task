@@ -26,9 +26,18 @@ const CardImg = styled.img`
   border-radius: 10px 0 0 10px;
 `;
 
-export function Card({ id, status, name, species, type, gender, image }) {
+export function Card({
+  id,
+  status,
+  name,
+  species,
+  type,
+  gender,
+  image,
+  onClickHandler
+}) {
   return (
-    <StyledCard _width="48%" key={id}>
+    <StyledCard _width="48%" key={id} onClick={onClickHandler}>
       <CardImg src={image} alt={name} />
       <CardInfo>
         <CardTitle name={name} gender={gender} />
