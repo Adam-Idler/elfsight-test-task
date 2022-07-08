@@ -38,6 +38,8 @@ export function Pagination({ pages, setApiURL }) {
     setApiURL(pages[index].pageURL);
   };
 
+  if (!pages.length || pages.length === 1) return null;
+
   return (
     <StyledPagination>
       <>

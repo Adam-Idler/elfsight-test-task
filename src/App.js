@@ -1,27 +1,34 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Container, Card, Title, Loader, Pagination } from './components';
-import { Popup } from './components/popup/Popup';
+import {
+  Container,
+  Card,
+  Loader,
+  Pagination,
+  Popup,
+  SearchBar,
+  WidgetHeader,
+  WidgetLogo
+} from './components';
 
 export function App() {
   const [characters, setCharacters] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const [popupSettings, setPopupSettings] = useState({ visible: false });
   const [info, setInfo] = useState({});
-  const [filters, setFilters] = useState({});
   const [apiURL, setApiURL] = useState(
     'https://rickandmortyapi.com/api/character/'
   );
   const pages = [];
 
   const togglePopup = (e) => {
+    document.body.style.overflow = !popupSettings.visible ? 'hidden' : 'auto';
     if (e.currentTarget !== e.target) return;
 
     setPopupSettings((prevState) => ({
       ...prevState,
       visible: !prevState.visible
     }));
-    document.body.style.overflow = !popupSettings.visible ? 'hidden' : 'auto';
   };
 
   const fetchData = async (url) => {
@@ -31,15 +38,6 @@ export function App() {
       .then(({ data }) => {
         setIsFetching(false);
         setCharacters(data.results);
-        setFilters((prevState) => ({
-          ...prevState,
-          ...{
-            status: ['alive', 'dead', 'unknown'],
-            species: [...new Set(data.results.map((item) => item.species))],
-            type: [...new Set(data.results.map((item) => item.type))],
-            gender: ['female', 'male', 'genderless', 'unknown']
-          }
-        }));
         setInfo(data.info);
       })
       .catch((e) => console.error(e));
@@ -60,7 +58,10 @@ export function App() {
 
   return (
     <>
-      <Title>Characters List</Title>
+      <WidgetHeader>
+        <WidgetLogo />
+        <SearchBar setApiURL={setApiURL} />
+      </WidgetHeader>
 
       <Container isFetching={isFetching}>
         {isFetching ? (
@@ -74,17 +75,20 @@ export function App() {
                     togglePopup(e);
                     setPopupSettings({ visible: true, content: { ...props } });
                   }}
+                  isFullWidth={characters.length === 1}
                   key={props.id}
                   {...props}
                 />
               ))}
           </>
         )}
+
         <Popup
           visible={popupSettings.visible}
           content={popupSettings.content}
           onClickHandler={togglePopup}
         />
+
         <Pagination pages={pages} setApiURL={setApiURL} />
       </Container>
     </>

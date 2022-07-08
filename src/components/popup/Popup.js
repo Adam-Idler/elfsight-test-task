@@ -5,6 +5,7 @@ import { PopupInfo } from './PopupInfo';
 
 const PopupContainer = styled.div`
   position: fixed;
+  z-index: 10;
   background: rgba(0, 0, 0, 0.4);
   width: 100%;
   height: 100vh;
@@ -89,8 +90,7 @@ export function Popup({ visible, content = {}, onClickHandler }) {
     type,
     origin,
     location,
-    episode: episodes,
-    created
+    episode: episodes
   } = content;
 
   return (
