@@ -1,21 +1,7 @@
 import styled from 'styled-components';
-import { CardStatus, CardTitle } from './card';
-
-const PopupTitle = styled(CardTitle)`
-  font-size: 22px;
-  justify-content: center;
-  margin-top: 30px;
-`;
-
-const PopupStatus = styled(CardStatus)`
-  font-size: 20px;
-  justify-content: center;
-
-  & p {
-    text-align: center;
-    margin-top: 10px;
-  }
-`;
+import { PopupEpisodes } from './PopupEpisodes';
+import { PopupHeader } from './PopupHeader';
+import { PopupInfo } from './PopupInfo';
 
 const PopupContainer = styled.div`
   position: fixed;
@@ -47,10 +33,10 @@ const StyledPopup = styled.div`
   margin: 0 auto;
   height: auto;
   max-height: 90vh;
-  margin-top: calc(15vh - 20px);
+  margin-top: calc(10vh - 20px);
   background: #263750;
   border-radius: 15px;
-  padding: 20px;
+  padding: 20px 40px;
   border: 2px solid #83bf46;
   overflow: auto;
 
@@ -63,7 +49,7 @@ const CloseIcon = styled.div`
   cursor: pointer;
   position: fixed;
   right: calc(30% - 10px);
-  top: calc(15vh - 30px);
+  top: calc(10vh - 30px);
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -93,23 +79,36 @@ const CloseIcon = styled.div`
   }
 `;
 
-const PopupImage = styled.img`
-  display: block;
-  margin: 0 auto;
-  max-width: 300px;
-  max-height: 300px;
-  object-fit: cover;
-`;
-
 export function Popup({ visible, content = {}, onClickHandler }) {
-  const { name, gender, image, status, species, type } = content;
+  const {
+    name,
+    gender,
+    image,
+    status,
+    species,
+    type,
+    origin,
+    location,
+    episode: episodes,
+    created
+  } = content;
+
   return (
     <PopupContainer onClick={onClickHandler} visible={visible}>
       <StyledPopup>
         <CloseIcon onClick={onClickHandler} />
-        <PopupImage src={image?.replace('../', '')} alt={name} />
-        <PopupTitle name={name} gender={gender} />
-        <PopupStatus status={status} species={species} type={type} />
+        <PopupHeader
+          name={name}
+          gender={gender}
+          image={image}
+          status={status}
+          species={species}
+          type={type}
+        />
+
+        <PopupInfo origin={origin} location={location} />
+
+        <PopupEpisodes episodes={episodes} />
       </StyledPopup>
     </PopupContainer>
   );

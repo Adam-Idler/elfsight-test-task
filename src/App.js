@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Container, Card, Title, Loader, Pagination } from './components';
-import { Popup } from './components/Popup';
+import { Popup } from './components/popup/Popup';
 
 export function App() {
   const [characters, setCharacters] = useState(null);
