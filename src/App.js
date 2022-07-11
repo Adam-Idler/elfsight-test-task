@@ -73,7 +73,10 @@ export function App() {
                 <Card
                   onClickHandler={(e) => {
                     togglePopup(e);
-                    setPopupSettings({ visible: true, content: { ...props } });
+                    setPopupSettings({
+                      visible: true,
+                      content: { ...props }
+                    });
                   }}
                   isFullWidth={characters.length === 1}
                   key={props.id}

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
-const SearchBarContainer = styled.div`
+const SearchBarContainer = styled.form`
   position: relative;
   width: 25%;
   background: #57bd84;
@@ -50,7 +50,13 @@ const StyledSearchBar = styled.input`
 `;
 
 export function SearchBar({ setApiURL }) {
+  const inputRef = useRef(null);
   const [searchValue, setSearchValue] = useState('');
+
+  const searchHandler = (e) => {
+    e.preventDefault();
+    setTimeout(() => setSearchValue(inputRef.current.value), 1000);
+  };
 
   useEffect(() => {
     setApiURL(`https://rickandmortyapi.com/api/character/?name=${searchValue}`);
@@ -58,16 +64,14 @@ export function SearchBar({ setApiURL }) {
   }, [searchValue]);
 
   return (
-    <SearchBarContainer>
+    <SearchBarContainer onSubmit={searchHandler}>
       <StyledSearchBar
-        id="search"
         placeholder="Search by name..."
-        onChange={(e) => {
-          setTimeout(() => setSearchValue(e.target.value), 1000);
-        }}
+        ref={inputRef}
+        onChange={searchHandler}
         autoFocus
       />
-      <SearchBarButton>Go</SearchBarButton>
+      <SearchBarButton type="submit">Go</SearchBarButton>
     </SearchBarContainer>
   );
 }
