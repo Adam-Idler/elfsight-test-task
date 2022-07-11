@@ -52,7 +52,9 @@ export function App() {
       index: i,
       prev: info.prev,
       next: info.next,
-      pageURL: `https://rickandmortyapi.com/api/character/?page=${i + 1}`
+      pageURL: `${apiURL.replace(/&?page=\d+/, '')}${
+        /\?/g.test(apiURL) ? '&' : '?'
+      }page=${i + 1}`
     });
   }
 
