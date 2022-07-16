@@ -9,6 +9,10 @@ export const WidgetHeader = styled.div`
   padding: 20px 0;
 
   ${window.screen.width < 1200 && `max-width: 95%;`}
-  ${window.screen.width < 930 && `max-width: 70%;`}
+  ${window.screen.width < 930 &&
+  `
+    max-width: 70%;
+    flex-direction: column;
+  `}
   ${window.screen.width < 600 && `max-width: 95%;`}
 `;

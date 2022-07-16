@@ -6,10 +6,10 @@ import {
   Loader,
   Pagination,
   Popup,
-  SearchBar,
   WidgetHeader,
   WidgetLogo
 } from './components';
+import { FilterContainer } from './components/filters';
 
 export function App() {
   const [characters, setCharacters] = useState(null);
@@ -62,7 +62,7 @@ export function App() {
     <>
       <WidgetHeader>
         <WidgetLogo />
-        <SearchBar setApiURL={setApiURL} />
+        <FilterContainer setApiURL={setApiURL} />
       </WidgetHeader>
 
       <Container isFetching={isFetching}>

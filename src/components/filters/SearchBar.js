@@ -1,0 +1,62 @@
+import styled from 'styled-components';
+
+const SearchBarContainer = styled.div`
+  position: relative;
+  background: #57bd84;
+  border-radius: 7px;
+  margin-bottom: 20px;
+`;
+
+const StyledSearchBar = styled.input`
+  height: 40px;
+  width: 100%;
+  border: 0;
+  color: #2f2f2f;
+  font-size: 16px;
+  outline: 0;
+  background: #fff;
+  padding: 0 10px;
+  border-radius: 7px;
+  transition: all 0.3s cubic-bezier(0, 0, 0.45, 1.5);
+  transition-property: width, border-radius;
+  z-index: 1;
+  position: relative;
+
+  .active & {
+    border-radius: 7px 0 0 7px;
+    width: calc(100% - 60px);
+  }
+`;
+
+const SearchBarButton = styled.button`
+  cursor: pointer;
+  width: 60px;
+  height: 40px;
+  border: 0;
+  color: #2f2f2f;
+  font-size: 18px;
+  font-weight: bold;
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #83bf46;
+  border-radius: 0 7px 7px 0;
+
+  .active & {
+    display: block;
+  }
+`;
+
+export function SearchBar({ name, changeHanlder }) {
+  return (
+    <SearchBarContainer>
+      <StyledSearchBar
+        name={name}
+        placeholder={`Search by ${name}...`}
+        onChange={changeHanlder}
+      />
+      <SearchBarButton type="submit">Go</SearchBarButton>
+    </SearchBarContainer>
+  );
+}

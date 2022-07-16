@@ -7,4 +7,4 @@ export * from './Pagination';
 export * from './WidgetLogo';
 export * from './WidgetHeader';
 export * from './popup';
-export * from './SearchBar';
+export * from './filters/SearchBar';
