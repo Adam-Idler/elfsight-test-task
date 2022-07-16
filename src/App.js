@@ -7,13 +7,15 @@ import {
   Pagination,
   Popup,
   WidgetHeader,
-  WidgetLogo
+  WidgetLogo,
+  FilterContainer,
+  Text
 } from './components';
-import { FilterContainer } from './components/filters';
 
 export function App() {
   const [characters, setCharacters] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [popupSettings, setPopupSettings] = useState({ visible: false });
   const [info, setInfo] = useState({});
   const [apiURL, setApiURL] = useState(
@@ -33,6 +35,7 @@ export function App() {
 
   const fetchData = async (url) => {
     setIsFetching(true);
+    setIsError(false);
     axios
       .get(url)
       .then(({ data }) => {
@@ -40,7 +43,10 @@ export function App() {
         setCharacters(data.results);
         setInfo(data.info);
       })
-      .catch((e) => console.error(e));
+      .catch((e) => {
+        setIsError(true);
+        console.error(e);
+      });
   };
 
   useEffect(() => {
@@ -66,9 +72,14 @@ export function App() {
       </WidgetHeader>
 
       <Container isFetching={isFetching}>
-        {isFetching ? (
-          <Loader />
-        ) : (
+        {isFetching && !isError && <Loader />}
+        {isError && (
+          <Text style={{ margin: 'auto' }}>
+            An error has occurred. Try other search parameters.
+          </Text>
+        )}
+
+        {!isError && !isFetching && (
           <>
             {characters &&
               characters.map((props) => (
@@ -85,16 +96,18 @@ export function App() {
                   {...props}
                 />
               ))}
+
+            <Popup
+              visible={popupSettings.visible}
+              content={popupSettings.content}
+              onClickHandler={togglePopup}
+            />
           </>
         )}
 
-        <Popup
-          visible={popupSettings.visible}
-          content={popupSettings.content}
-          onClickHandler={togglePopup}
-        />
-
-        <Pagination pages={pages} setApiURL={setApiURL} />
+        {!isFetching && !isError && (
+          <Pagination pages={pages} setApiURL={setApiURL} />
+        )}
       </Container>
     </>
   );

@@ -1,6 +1,6 @@
-import { ReactComponent as Male } from '../assets/male.svg';
-import { ReactComponent as Female } from '../assets/female.svg';
-import { ReactComponent as Genderless } from '../assets/genderless.svg';
+import { ReactComponent as Male } from '../assets/genders/male.svg';
+import { ReactComponent as Female } from '../assets/genders/female.svg';
+import { ReactComponent as Genderless } from '../assets/genders/genderless.svg';
 
 export function GenderIcon({ gender }) {
   switch (gender) {
