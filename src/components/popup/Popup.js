@@ -44,6 +44,9 @@ const StyledPopup = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+
+  ${window.screen.width < 930 && `width: 80%;`}
+  ${window.screen.width < 600 && `width: 95%;`}
 `;
 
 const CloseIcon = styled.div`
@@ -78,6 +81,9 @@ const CloseIcon = styled.div`
     right: 4.5px;
     transform: rotate(45deg);
   }
+
+  ${window.screen.width < 930 && `right: calc(10% - 10px);`}
+  ${window.screen.width < 600 && `right: calc(3% - 10px);`}
 `;
 
 export function Popup({ visible, content = {}, onClickHandler }) {

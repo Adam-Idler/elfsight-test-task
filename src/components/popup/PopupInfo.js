@@ -4,12 +4,13 @@ import { Text } from '../common';
 const StyledPopupInfo = styled.div`
   display: flex;
   justify-content: space-between;
+  flex-direction: ${window.screen.width < 600 ? 'column' : 'row'};
   margin-bottom: 40px;
 `;
 
 const PopupOrigin = styled.div`
   margin-top: 40px;
-  max-width: 45%;
+  max-width: ${window.screen.width < 600 ? '100%' : '48%'};
   display: flex;
   flex-direction: column;
 `;

@@ -21,8 +21,8 @@ const PopupImage = styled.img`
   display: block;
   border-radius: 5px;
   margin: 0 auto;
-  max-width: 300px;
-  max-height: 300px;
+  max-width: ${window.screen.width < 600 ? '200px' : '300px'};
+  max-height: ${window.screen.width < 600 ? '200px' : '300px'};
   object-fit: cover;
 `;
 

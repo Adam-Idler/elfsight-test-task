@@ -15,7 +15,9 @@ const StyledPopupEpisodes = styled.div`
         grid-auto-flow: column;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 
-          repeat(${Math.ceil(_length / 2)}, 1fr);
+          repeat(${
+            window.screen.width < 600 ? _length : Math.ceil(_length / 2)
+          }, 1fr);
 
         & p {
           width: 95%;
@@ -23,11 +25,16 @@ const StyledPopupEpisodes = styled.div`
         }
 
         & span {
-          margin-bottom: 0;
+          margin-bottom: ${window.screen.width < 600 ? '10px' : 0};
         }
       `;
     }
   }}
+
+  ${window.screen.width < 600 &&
+  `
+    grid-template-columns: 1fr;
+  `}
 `;
 
 const Episode = styled.p`

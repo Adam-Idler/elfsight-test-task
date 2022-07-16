@@ -5,10 +5,7 @@ const StyledWidgetLogo = styled.img`
   max-width: 300px;
   user-select: none;
 
-  ${window.screen.width < 930 &&
-  `
-    margin-bottom: 20px;
-  `}
+  ${window.screen.width < 930 && `margin-bottom: 20px;`}
 `;
 
 export function WidgetLogo() {
