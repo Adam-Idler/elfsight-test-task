@@ -1,21 +1,12 @@
-## Available Scripts
+# Elfsight Test Task (Rick and Morty API)
 
-In the project directory, you can run:
+### How to run on local:
 
-### `npm start`
+1. Clone the repository to your PC.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. Open project in any IDE.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. Run the command `npm i && npm run start`.
+After the dependencies are installed, the project will be opened on `localhost:3000`
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Also the app deployed on GitHub Pages https://adam-idler.github.io/elfsight-test-task
