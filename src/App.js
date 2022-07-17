@@ -13,6 +13,7 @@ import {
 } from './components';
 
 export function App() {
+  const [activePage, setActivePage] = useState(0);
   const [characters, setCharacters] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -49,29 +50,27 @@ export function App() {
       });
   };
 
-  useEffect(() => {
-    fetchData(apiURL);
-  }, [apiURL]);
-
   for (let i = 0; i < info.pages; i++) {
     pages.push({
       index: i,
-      prev: info.prev,
-      next: info.next,
       pageURL: `${apiURL.replace(/&?page=\d+/, '')}${
         /\?/g.test(apiURL) ? '&' : '?'
       }page=${i + 1}`
     });
   }
 
+  useEffect(() => {
+    fetchData(apiURL);
+  }, [apiURL]);
+
   return (
     <>
       <WidgetHeader>
         <WidgetLogo />
-        <FilterContainer setApiURL={setApiURL} />
+        <FilterContainer setApiURL={setApiURL} setActivePage={setActivePage} />
       </WidgetHeader>
 
-      <Container isFetching={isFetching}>
+      <Container>
         {isFetching && !isError && <Loader />}
         {isError && (
           <Text style={{ margin: 'auto' }}>
@@ -79,7 +78,7 @@ export function App() {
           </Text>
         )}
 
-        {!isError && !isFetching && (
+        {!isFetching && !isError && (
           <>
             {characters &&
               characters.map((props) => (
@@ -102,11 +101,14 @@ export function App() {
               content={popupSettings.content}
               onClickHandler={togglePopup}
             />
-          </>
-        )}
 
-        {!isFetching && !isError && (
-          <Pagination pages={pages} setApiURL={setApiURL} />
+            <Pagination
+              pages={pages}
+              setApiURL={setApiURL}
+              activePage={activePage}
+              setActivePage={setActivePage}
+            />
+          </>
         )}
       </Container>
     </>

@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 
 const StyledPagination = styled.div`
@@ -29,9 +28,7 @@ const Ellipsis = styled(Page)`
   }
 `;
 
-export function Pagination({ pages, setApiURL }) {
-  const [activePage, setActivePage] = useState(0);
-
+export function Pagination({ pages, setApiURL, activePage, setActivePage }) {
   const pageClickHandler = (index) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setActivePage(index);
@@ -43,12 +40,12 @@ export function Pagination({ pages, setApiURL }) {
   return (
     <StyledPagination>
       <>
-        {pages[activePage]?.prev && (
+        {pages[activePage - 1]?.pageURL && (
           <>
             {activePage - 1 !== 0 && (
               <>
                 <Page key={0} onClick={() => pageClickHandler(0)}>
-                  {'«First'}
+                  «First
                 </Page>
                 <Ellipsis>...</Ellipsis>
               </>
@@ -66,7 +63,7 @@ export function Pagination({ pages, setApiURL }) {
           {activePage + 1}
         </Page>
 
-        {pages[activePage]?.next && (
+        {pages[activePage + 1]?.pageURL && (
           <>
             <Page
               key={activePage + 1}
@@ -81,7 +78,7 @@ export function Pagination({ pages, setApiURL }) {
                   key={pages.length - 1}
                   onClick={() => pageClickHandler(pages.length - 1)}
                 >
-                  {'Last»'}
+                  Last»
                 </Page>
               </>
             )}

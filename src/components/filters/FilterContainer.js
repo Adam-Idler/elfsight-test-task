@@ -34,7 +34,7 @@ const StyledFilterContainer = styled.form`
   `}
 `;
 
-export function FilterContainer({ setApiURL }) {
+export function FilterContainer({ setApiURL, setActivePage }) {
   const formRef = useRef(null);
   const [currentVisibleField, setCurrentVisibleField] = useState('name');
   const [searching, setSearching] = useState(false);
@@ -69,6 +69,7 @@ export function FilterContainer({ setApiURL }) {
         searchValue ? '?' : ''
       }${searchValue}`
     );
+    setActivePage(0);
     setSearching(false);
     // eslint-disable-next-line
   }, [searching]);

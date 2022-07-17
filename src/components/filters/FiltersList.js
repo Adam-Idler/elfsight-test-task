@@ -1,12 +1,6 @@
 import styled from 'styled-components';
 import { Filter } from './Filter';
-import { filtersOptions } from './filterOptions';
-
-const {
-  status: statusOptions,
-  gender: genderOptions,
-  species: speciesOptions
-} = filtersOptions;
+import { statusOptions, genderOptions, speciesOptions } from './filtersOptions';
 
 const StyledFilterList = styled.div`
   display: flex;
