@@ -2,6 +2,27 @@ import { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FilterList, SearchBar } from './';
 
+const SearchBarContainer = styled.div`
+  display: flex;
+`;
+
+const ChangeSearchButton = styled.button`
+  width: 50px;
+  height: 40px;
+  margin-right: 10px;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: capitalize;
+  user-select: none;
+  transition: border-color 0.3s;
+
+  &:hover {
+    border-color: #83bf46;
+  }
+`;
+
 const StyledFilterContainer = styled.form`
   display: flex;
   flex-direction: column;
@@ -15,6 +36,7 @@ const StyledFilterContainer = styled.form`
 
 export function FilterContainer({ setApiURL }) {
   const formRef = useRef(null);
+  const [currentVisibleField, setCurrentVisibleField] = useState('name');
   const [searching, setSearching] = useState(false);
   const [formValues, setFormValues] = useState({
     name: '',
@@ -27,6 +49,13 @@ export function FilterContainer({ setApiURL }) {
   const onChangeHandler = (e) => {
     const { name, value } = e?.target || e;
     setFormValues((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const searchBtnClickHandler = () => {
+    setCurrentVisibleField((prevState) => {
+      if (prevState === 'name') return 'type';
+      return 'name';
+    });
   };
 
   useEffect(() => {
@@ -57,7 +86,16 @@ export function FilterContainer({ setApiURL }) {
 
   return (
     <StyledFilterContainer ref={formRef} onSubmit={searchHandler}>
-      <SearchBar name="name" changeHanlder={onChangeHandler} />
+      <SearchBarContainer>
+        <ChangeSearchButton type="button" onClick={searchBtnClickHandler}>
+          {currentVisibleField === 'name' ? 'type' : 'name'}
+        </ChangeSearchButton>
+        <SearchBar
+          name={currentVisibleField}
+          formValues={formValues}
+          changeHanlder={onChangeHandler}
+        />
+      </SearchBarContainer>
 
       <FilterList changeHanlder={onChangeHandler} />
     </StyledFilterContainer>
