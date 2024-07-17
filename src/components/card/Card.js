@@ -1,6 +1,28 @@
 import styled from 'styled-components';
 import { CardInfo, CardStatus, CardTitle } from './';
 
+export function Card({
+  id,
+  status,
+  name,
+  species,
+  type,
+  gender,
+  image,
+  onClickHandler
+}) {
+  return (
+    <StyledCard key={id} onClick={onClickHandler}>
+      <CardImg src={image} alt={name} />
+
+      <CardInfo>
+        <CardTitle name={name} gender={gender} className="card-title" />
+        <CardStatus status={status} species={species} type={type} />
+      </CardInfo>
+    </StyledCard>
+  );
+}
+
 const StyledCard = styled.div`
   display: flex;
   width: 100%;
@@ -24,26 +46,3 @@ const StyledCard = styled.div`
 const CardImg = styled.img`
   border-radius: 10px 10px 0 0;
 `;
-
-export function Card({
-  id,
-  status,
-  name,
-  species,
-  type,
-  gender,
-  image,
-  onClickHandler,
-  isFullWidth
-}) {
-  return (
-    <StyledCard key={id} onClick={onClickHandler} isFullWidth={isFullWidth}>
-      <CardImg src={image} alt={name} />
-
-      <CardInfo>
-        <CardTitle name={name} gender={gender} className="card-title" />
-        <CardStatus status={status} species={species} type={type} />
-      </CardInfo>
-    </StyledCard>
-  );
-}

@@ -2,7 +2,17 @@ import styled from 'styled-components';
 import { Logo } from './Logo';
 import { FilterContainer } from '../filters';
 
-export const HeaderContainer = styled.div`
+export function Header() {
+  return (
+    <HeaderContainer>
+      <Logo />
+
+      <FilterContainer />
+    </HeaderContainer>
+  );
+}
+
+const HeaderContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -14,13 +24,3 @@ export const HeaderContainer = styled.div`
     margin: 0 auto;
   }
 `;
-
-export function Header() {
-  return (
-    <HeaderContainer>
-      <Logo />
-
-      <FilterContainer />
-    </HeaderContainer>
-  );
-}

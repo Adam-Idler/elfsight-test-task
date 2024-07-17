@@ -3,35 +3,6 @@ import styled from 'styled-components';
 import { FilterList, SearchBar } from './';
 import { useData } from '../providers';
 
-const SearchBarContainer = styled.div`
-  display: flex;
-`;
-
-const ChangeSearchButton = styled.button`
-  width: 50px;
-  height: 40px;
-  margin-right: 10px;
-  cursor: pointer;
-  background: #fff;
-  border-radius: 4px;
-  font-size: 14px;
-  text-transform: capitalize;
-  user-select: none;
-  transition: border-color 0.3s;
-
-  &:hover {
-    border-color: #83bf46;
-  }
-`;
-
-const StyledFilterContainer = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 45%;
-
-  ${window.screen.width < 930 && 'width: 100%'};
-`;
-
 const defaultFormValues = {
   name: '',
   type: '',
@@ -109,3 +80,32 @@ export function FilterContainer() {
     </StyledFilterContainer>
   );
 }
+
+const SearchBarContainer = styled.div`
+  display: flex;
+`;
+
+const ChangeSearchButton = styled.button`
+  width: 50px;
+  height: 40px;
+  margin-right: 10px;
+  cursor: pointer;
+  background: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  text-transform: capitalize;
+  user-select: none;
+  transition: border-color 0.3s;
+
+  &:hover {
+    border-color: #83bf46;
+  }
+`;
+
+const StyledFilterContainer = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+
+  ${window.screen.width < 930 && 'width: 100%'};
+`;

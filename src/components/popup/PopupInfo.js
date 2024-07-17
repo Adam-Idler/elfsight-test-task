@@ -1,6 +1,26 @@
 import styled from 'styled-components';
 import { Text } from '../common';
 
+export function PopupInfo({ origin, location }) {
+  return (
+    <StyledPopupInfo>
+      {origin?.name !== 'unknown' && (
+        <PopupOrigin>
+          <Text>First Seen in:</Text>
+          <PopupOriginValue>{origin?.name}</PopupOriginValue>
+        </PopupOrigin>
+      )}
+
+      {location?.name !== 'unknown' && (
+        <PopupLastLocation>
+          <Text>Last known location:</Text>
+          <PopupLastLocationValue>{location?.name}</PopupLastLocationValue>
+        </PopupLastLocation>
+      )}
+    </StyledPopupInfo>
+  );
+}
+
 const StyledPopupInfo = styled.div`
   display: flex;
   justify-content: space-between;
@@ -22,23 +42,3 @@ const PopupOriginValue = styled.p`
 `;
 
 const PopupLastLocationValue = styled(PopupOriginValue)``;
-
-export function PopupInfo({ origin, location }) {
-  return (
-    <StyledPopupInfo>
-      {origin?.name !== 'unknown' && (
-        <PopupOrigin>
-          <Text>First Seen in:</Text>
-          <PopupOriginValue>{origin?.name}</PopupOriginValue>
-        </PopupOrigin>
-      )}
-
-      {location?.name !== 'unknown' && (
-        <PopupLastLocation>
-          <Text>Last known location:</Text>
-          <PopupLastLocationValue>{location?.name}</PopupLastLocationValue>
-        </PopupLastLocation>
-      )}
-    </StyledPopupInfo>
-  );
-}

@@ -1,5 +1,20 @@
 import styled from 'styled-components';
 
+export function SearchBar({ name, formValues, changeHandler }) {
+  return (
+    <SearchBarContainer>
+      <StyledSearchBar
+        name={name}
+        value={formValues[name]}
+        placeholder={`Search by ${name}...`}
+        onChange={changeHandler}
+      />
+
+      <SearchBarButton type="submit">Go</SearchBarButton>
+    </SearchBarContainer>
+  );
+}
+
 const SearchBarContainer = styled.div`
   position: relative;
   background: #83bf46;
@@ -55,18 +70,3 @@ const SearchBarButton = styled.button`
     display: block;
   }
 `;
-
-export function SearchBar({ name, formValues, changeHandler }) {
-  return (
-    <SearchBarContainer>
-      <StyledSearchBar
-        name={name}
-        value={formValues[name]}
-        placeholder={`Search by ${name}...`}
-        onChange={changeHandler}
-      />
-
-      <SearchBarButton type="submit">Go</SearchBarButton>
-    </SearchBarContainer>
-  );
-}

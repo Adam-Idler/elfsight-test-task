@@ -2,15 +2,6 @@ import styled from 'styled-components';
 import { Filter } from './Filter';
 import { statusOptions, genderOptions, speciesOptions } from './filtersOptions';
 
-const StyledFilterList = styled.div`
-  display: flex;
-  justify-content: space-between;
-
-  & > div {
-    width: 32%;
-  }
-`;
-
 export function FilterList({ changeHandler }) {
   return (
     <StyledFilterList>
@@ -32,3 +23,12 @@ export function FilterList({ changeHandler }) {
     </StyledFilterList>
   );
 }
+
+const StyledFilterList = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  & > div {
+    width: 32%;
+  }
+`;
