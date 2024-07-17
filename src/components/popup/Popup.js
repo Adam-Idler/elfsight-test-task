@@ -21,8 +21,6 @@ export function Popup({ settings: { visible, content = {} }, setSettings }) {
       return;
     }
 
-    document.body.style.overflow = !visible ? 'hidden' : 'auto';
-
     setSettings((prevState) => ({
       ...prevState,
       visible: !prevState.visible
@@ -30,7 +28,7 @@ export function Popup({ settings: { visible, content = {} }, setSettings }) {
   }
 
   return (
-    <PopupContainer onClick={togglePopup} visible={visible}>
+    <PopupContainer visible={visible}>
       <StyledPopup>
         <CloseIcon onClick={togglePopup} />
 

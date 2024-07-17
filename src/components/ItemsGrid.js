@@ -14,8 +14,6 @@ export function ItemsGrid() {
   const [popupSettings, setPopupSettings] = useState(defaultPopupSettings);
 
   function cardOnClickHandler(props) {
-    document.body.style.overflow = 'hidden';
-
     setPopupSettings({
       visible: true,
       content: { ...props }
