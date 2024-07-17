@@ -13,21 +13,8 @@ export function ItemsGrid() {
   const { characters } = useData();
   const [popupSettings, setPopupSettings] = useState(defaultPopupSettings);
 
-  function togglePopup(e) {
-    document.body.style.overflow = !popupSettings.visible ? 'hidden' : 'auto';
-
-    if (e.currentTarget !== e.target) {
-      return;
-    }
-
-    setPopupSettings((prevState) => ({
-      ...prevState,
-      visible: !prevState.visible
-    }));
-  }
-
-  function cardOnClickHandler(e, props) {
-    togglePopup(e);
+  function cardOnClickHandler(props) {
+    document.body.style.overflow = 'hidden';
 
     setPopupSettings({
       visible: true,
@@ -44,16 +31,12 @@ export function ItemsGrid() {
       {characters.map((props) => (
         <Card
           key={props.id}
-          onClickHandler={(e) => cardOnClickHandler(e, props)}
+          onClickHandler={() => cardOnClickHandler(props)}
           {...props}
         />
       ))}
 
-      <Popup
-        visible={popupSettings.visible}
-        content={popupSettings.content}
-        onClickHandler={togglePopup}
-      />
+      <Popup settings={popupSettings} setSettings={setPopupSettings} />
     </Container>
   );
 }
