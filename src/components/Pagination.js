@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { useData } from './providers';
 
 const StyledPagination = styled.div`
   width: 100%;
@@ -26,12 +27,25 @@ const Ellipsis = styled(Page)`
   }
 `;
 
-export function Pagination({ pages, setApiURL, activePage, setActivePage }) {
+export function Pagination() {
+  const { apiURL, info, activePage, setActivePage, setApiURL } = useData();
+
   const pageClickHandler = (index) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
     setActivePage(index);
     setApiURL(pages[index].pageURL);
   };
+
+  const pages = [];
+
+  for (let i = 0; i < info.pages; i++) {
+    pages.push({
+      index: i,
+      pageURL: `${apiURL.replace(/&?page=\d+/, '')}${
+        /\?/g.test(apiURL) ? '&' : '?'
+      }page=${i + 1}`
+    });
+  }
 
   if (pages.length <= 1) return null;
 

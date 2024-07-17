@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FilterList, SearchBar } from './';
+import { useData } from '../providers';
 
 const SearchBarContainer = styled.div`
   display: flex;
@@ -39,8 +40,9 @@ const defaultFormValues = {
   status: ''
 };
 
-export function FilterContainer({ setApiURL, setActivePage }) {
+export function FilterContainer() {
   const formRef = useRef(null);
+  const { setApiURL, setActivePage } = useData();
   const [currentVisibleField, setCurrentVisibleField] = useState('name');
   const [searching, setSearching] = useState(false);
   const [formValues, setFormValues] = useState(defaultFormValues);
