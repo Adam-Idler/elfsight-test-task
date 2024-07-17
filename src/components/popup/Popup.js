@@ -84,7 +84,7 @@ const CloseIcon = styled.div`
   ${window.screen.width < 600 && 'right: calc(3% - 10px)'};
 `;
 
-export function Popup({ visible, content = {}, onClickHandler }) {
+export function Popup({ visible, onClickHandler, content = {} }) {
   const {
     name,
     gender,
@@ -101,6 +101,7 @@ export function Popup({ visible, content = {}, onClickHandler }) {
     <PopupContainer onClick={onClickHandler} visible={visible}>
       <StyledPopup>
         <CloseIcon onClick={onClickHandler} />
+
         <PopupHeader
           name={name}
           gender={gender}

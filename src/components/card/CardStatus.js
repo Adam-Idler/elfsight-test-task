@@ -1,5 +1,16 @@
 import styled from 'styled-components';
 
+export function CardStatus({ status, species, type, className }) {
+  return (
+    <CardStatusContainer className={className}>
+      <StyledCardStatus status={status}>{status}</StyledCardStatus>
+      &nbsp;-&nbsp;
+      <CardSpecies>{species}</CardSpecies>
+      {type && <CardType>{type}</CardType>}
+    </CardStatusContainer>
+  );
+}
+
 const CardStatusContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -38,14 +49,3 @@ const CardType = styled.p`
   color: #ddd;
   font-size: 16px;
 `;
-
-export function CardStatus({ status, species, type, className }) {
-  return (
-    <CardStatusContainer className={className}>
-      <StyledCardStatus status={status}>{status}</StyledCardStatus>
-      &nbsp;-&nbsp;
-      <CardSpecies>{species}</CardSpecies>
-      {type && <CardType>{type}</CardType>}
-    </CardStatusContainer>
-  );
-}

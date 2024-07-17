@@ -1,10 +1,5 @@
 import styled from 'styled-components';
 
-const StyledText = styled.span`
-  color: ${({ _color }) => _color};
-  font-size: ${({ _fontSize }) => _fontSize};
-`;
-
 export function Text({
   className,
   children,
@@ -23,3 +18,8 @@ export function Text({
     </StyledText>
   );
 }
+
+const StyledText = styled.span`
+  color: ${({ _color }) => _color};
+  font-size: ${({ _fontSize }) => _fontSize};
+`;

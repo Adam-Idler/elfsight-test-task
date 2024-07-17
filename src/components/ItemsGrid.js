@@ -13,15 +13,18 @@ export function ItemsGrid() {
   const { characters } = useData();
   const [popupSettings, setPopupSettings] = useState(defaultPopupSettings);
 
-  const togglePopup = (e) => {
+  function togglePopup(e) {
     document.body.style.overflow = !popupSettings.visible ? 'hidden' : 'auto';
-    if (e.currentTarget !== e.target) return;
+
+    if (e.currentTarget !== e.target) {
+      return;
+    }
 
     setPopupSettings((prevState) => ({
       ...prevState,
       visible: !prevState.visible
     }));
-  };
+  }
 
   function cardOnClickHandler(e, props) {
     togglePopup(e);
@@ -32,7 +35,7 @@ export function ItemsGrid() {
     });
   }
 
-  if (!characters?.length) {
+  if (!characters.length) {
     return null;
   }
 
@@ -41,7 +44,6 @@ export function ItemsGrid() {
       {characters.map((props) => (
         <Card
           key={props.id}
-          isFullWidth={characters.length === 1}
           onClickHandler={(e) => cardOnClickHandler(e, props)}
           {...props}
         />
