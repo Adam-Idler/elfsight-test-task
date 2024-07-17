@@ -15,7 +15,7 @@ export function AppState() {
     );
   }
 
-  if (isError) {
+  if (isFetching) {
     return (
       <AppStateContainer>
         <Loader />
