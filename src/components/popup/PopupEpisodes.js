@@ -4,12 +4,14 @@ import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 import { Loader } from '../common';
 
+const API_EPISODES_URL = 'https://rickandmortyapi.com/api/episode';
+
 export function PopupEpisodes({ episodes }) {
   const [series, setSeries] = useState([]);
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
-    if (!episodes || !episodes.length) {
+    if (!episodes?.length) {
       return;
     }
 
@@ -18,9 +20,10 @@ export function PopupEpisodes({ episodes }) {
     const episodesIds = episodes.map((ep) => ep.match(/\d+$/)[0]);
 
     axios
-      .get(`https://rickandmortyapi.com/api/episode/${episodesIds.join(',')}`)
+      .get(`${API_EPISODES_URL}/${episodesIds.join(',')}`)
       .then(({ data }) => {
         setIsFetching(false);
+
         if (episodes.length === 1) {
           setSeries([data]);
         } else {
