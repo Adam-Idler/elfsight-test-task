@@ -14,7 +14,7 @@ export function Pagination() {
 
   for (let i = 0; i < info.pages; i++) {
     const apiURLWithoutPage = apiURL.replace(/&?page=\d+/, '');
-    const separator = /\?/g.test(apiURLWithoutPage) ? '&' : '?';
+    const separator = /\?/g.test(apiURL) ? '&' : '?';
     const pageURL = apiURLWithoutPage + separator + `page=${i + 1}`;
 
     pages.push(pageURL);
