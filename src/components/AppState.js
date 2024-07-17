@@ -8,9 +8,7 @@ export function AppState() {
   if (isError) {
     return (
       <AppStateContainer>
-        <Text style={{ margin: 'auto' }}>
-          An error has occurred. Try other search parameters.
-        </Text>
+        <Text>An error has occurred. Try other search parameters.</Text>
       </AppStateContainer>
     );
   }
