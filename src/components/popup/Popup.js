@@ -3,6 +3,54 @@ import { PopupEpisodes } from './PopupEpisodes';
 import { PopupHeader } from './PopupHeader';
 import { PopupInfo } from './PopupInfo';
 
+export function Popup({ settings: { visible, content = {} }, setSettings }) {
+  const {
+    name,
+    gender,
+    image,
+    status,
+    species,
+    type,
+    origin,
+    location,
+    episode: episodes
+  } = content;
+
+  function togglePopup(e) {
+    if (e.currentTarget !== e.target) {
+      return;
+    }
+
+    document.body.style.overflow = !visible ? 'hidden' : 'auto';
+
+    setSettings((prevState) => ({
+      ...prevState,
+      visible: !prevState.visible
+    }));
+  }
+
+  return (
+    <PopupContainer onClick={togglePopup} visible={visible}>
+      <StyledPopup>
+        <CloseIcon onClick={togglePopup} />
+
+        <PopupHeader
+          name={name}
+          gender={gender}
+          image={image}
+          status={status}
+          species={species}
+          type={type}
+        />
+
+        <PopupInfo origin={origin} location={location} />
+
+        <PopupEpisodes episodes={episodes} />
+      </StyledPopup>
+    </PopupContainer>
+  );
+}
+
 const PopupContainer = styled.div`
   position: fixed;
   z-index: 10;
@@ -83,38 +131,3 @@ const CloseIcon = styled.div`
   ${window.screen.width < 930 && 'right: calc(10% - 10px)'};
   ${window.screen.width < 600 && 'right: calc(3% - 10px)'};
 `;
-
-export function Popup({ visible, onClickHandler, content = {} }) {
-  const {
-    name,
-    gender,
-    image,
-    status,
-    species,
-    type,
-    origin,
-    location,
-    episode: episodes
-  } = content;
-
-  return (
-    <PopupContainer onClick={onClickHandler} visible={visible}>
-      <StyledPopup>
-        <CloseIcon onClick={onClickHandler} />
-
-        <PopupHeader
-          name={name}
-          gender={gender}
-          image={image}
-          status={status}
-          species={species}
-          type={type}
-        />
-
-        <PopupInfo origin={origin} location={location} />
-
-        <PopupEpisodes episodes={episodes} />
-      </StyledPopup>
-    </PopupContainer>
-  );
-}
