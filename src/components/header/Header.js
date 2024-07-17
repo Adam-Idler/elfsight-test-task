@@ -7,9 +7,12 @@ export const HeaderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0 auto;
 
   ${window.screen.width < 930 && 'flex-direction: column'};
+
+  & > :only-child {
+    margin: 0 auto;
+  }
 `;
 
 export function Header() {

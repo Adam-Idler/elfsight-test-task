@@ -8,9 +8,7 @@ export function App() {
     <Main>
       <Header />
 
-      <AppStateContainer>
-        <AppState />
-      </AppStateContainer>
+      <AppState />
 
       {!isFetching && !isError && (
         <>
@@ -33,13 +31,6 @@ const Main = styled.main`
   margin: 0 auto;
 
   ${window.screen.width < 1200 && 'max-width: 95%'};
-  ${window.screen.width < 930 && 'max-width: 70%'};
+  ${window.screen.width < 930 && 'max-width: 85%'};
   ${window.screen.width < 600 && 'max-width: 90%'};
-`;
-
-const AppStateContainer = styled.div`
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;

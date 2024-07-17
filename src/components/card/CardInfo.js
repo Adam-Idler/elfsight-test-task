@@ -5,8 +5,6 @@ const StyledCardInfo = styled.div`
   flex-direction: column;
   color: #fff;
   padding: 20px;
-  /* margin-left: 10px; */
-  /* width: calc(100% - ${window.screen.width < 450 ? '150px' : '200px'}); */
 `;
 
 export function CardInfo({ children }) {

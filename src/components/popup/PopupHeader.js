@@ -22,8 +22,10 @@ const PopupImage = styled.img`
   border-radius: 5px;
   margin: 0 auto;
   object-fit: cover;
-  max-width: ${window.screen.width < 600 ? '200px' : '300px'};
-  max-height: ${window.screen.width < 600 ? '200px' : '300px'};
+  width: 100%;
+  height: 100%;
+  max-width: 350px;
+  max-height: 350px;
 `;
 
 export function PopupHeader({ image, name, gender, status, species, type }) {

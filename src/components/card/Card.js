@@ -3,19 +3,12 @@ import { CardInfo, CardStatus, CardTitle } from './';
 
 const StyledCard = styled.div`
   display: flex;
+  width: 100%;
+  max-width: 400px;
   flex-direction: column;
   background: #263750;
   border-radius: 10px;
   transition: transform 0.3s, box-shadow 0.3s;
-  /* margin-bottom: 20px; */
-  /* min-height: 150px;
-  max-height: 250px; */
-  /* width: ${({ isFullWidth }) =>
-    isFullWidth || window.screen.width < 930 ? '100%' : '20%'}; */
-
-  /* &:nth-last-child(${window.screen.width < 930 ? '1' : '2'}) {
-    margin-bottom: 0;
-  } */
 
   &:hover {
     cursor: pointer;
@@ -29,9 +22,7 @@ const StyledCard = styled.div`
 `;
 
 const CardImg = styled.img`
-  /* border-radius: 10px 0 0 10px; */
   border-radius: 10px 10px 0 0;
-  /* max-width: ${window.screen.width < 450 ? '150px' : '300px'}; */
 `;
 
 export function Card({
