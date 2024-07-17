@@ -72,6 +72,7 @@ export function App() {
 
       <Container>
         {isFetching && !isError && <Loader />}
+
         {isError && (
           <Text style={{ margin: 'auto' }}>
             An error has occurred. Try other search parameters.

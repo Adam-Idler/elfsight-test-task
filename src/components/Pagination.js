@@ -10,14 +10,12 @@ const Page = styled.span`
   font-size: 18px;
   padding: 5px 5px;
   cursor: pointer;
-
   transition: color 0.2s;
+  ${({ active }) => active && 'color: #83bf46;'}
 
   &:hover {
     color: #83bf46;
   }
-
-  ${({ active }) => active && 'color: #83bf46;'}
 `;
 
 const Ellipsis = styled(Page)`
@@ -35,7 +33,7 @@ export function Pagination({ pages, setApiURL, activePage, setActivePage }) {
     setApiURL(pages[index].pageURL);
   };
 
-  if (!pages.length || pages.length === 1) return null;
+  if (pages.length <= 1) return null;
 
   return (
     <StyledPagination>

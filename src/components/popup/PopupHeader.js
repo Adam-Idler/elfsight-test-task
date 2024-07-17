@@ -3,8 +3,8 @@ import { CardStatus, CardTitle } from '../card';
 
 const PopupTitle = styled(CardTitle)`
   font-size: 22px;
-  justify-content: center;
   margin-top: 30px;
+  justify-content: center;
 `;
 
 const PopupStatus = styled(CardStatus)`
@@ -21,9 +21,9 @@ const PopupImage = styled.img`
   display: block;
   border-radius: 5px;
   margin: 0 auto;
+  object-fit: cover;
   max-width: ${window.screen.width < 600 ? '200px' : '300px'};
   max-height: ${window.screen.width < 600 ? '200px' : '300px'};
-  object-fit: cover;
 `;
 
 export function PopupHeader({ image, name, gender, status, species, type }) {

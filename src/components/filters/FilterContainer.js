@@ -28,23 +28,22 @@ const StyledFilterContainer = styled.form`
   flex-direction: column;
   width: 45%;
 
-  ${window.screen.width < 930 &&
-  `
-    width: 100%;
-  `}
+  ${window.screen.width < 930 && 'width: 100%'};
 `;
+
+const defaultFormValues = {
+  name: '',
+  type: '',
+  species: '',
+  gender: '',
+  status: ''
+};
 
 export function FilterContainer({ setApiURL, setActivePage }) {
   const formRef = useRef(null);
   const [currentVisibleField, setCurrentVisibleField] = useState('name');
   const [searching, setSearching] = useState(false);
-  const [formValues, setFormValues] = useState({
-    name: '',
-    type: '',
-    species: '',
-    gender: '',
-    status: ''
-  });
+  const [formValues, setFormValues] = useState(defaultFormValues);
 
   const onChangeHandler = (e) => {
     const { name, value } = e?.target || e;
@@ -53,7 +52,10 @@ export function FilterContainer({ setApiURL, setActivePage }) {
 
   const searchBtnClickHandler = () => {
     setCurrentVisibleField((prevState) => {
-      if (prevState === 'name') return 'type';
+      if (prevState === 'name') {
+        return 'type';
+      }
+
       return 'name';
     });
   };
@@ -80,9 +82,11 @@ export function FilterContainer({ setApiURL, setActivePage }) {
   };
 
   useEffect(() => {
-    if (Object.keys(formValues).every((elem) => !formValues[elem]))
+    if (Object.keys(formValues).every((elem) => !formValues[elem])) {
       formRef.current.classList.remove('active');
-    else formRef.current.classList.add('active');
+    } else {
+      formRef.current.classList.add('active');
+    }
   }, [formValues]);
 
   return (
@@ -91,14 +95,15 @@ export function FilterContainer({ setApiURL, setActivePage }) {
         <ChangeSearchButton type="button" onClick={searchBtnClickHandler}>
           {currentVisibleField === 'name' ? 'type' : 'name'}
         </ChangeSearchButton>
+
         <SearchBar
           name={currentVisibleField}
           formValues={formValues}
-          changeHanlder={onChangeHandler}
+          changeHandler={onChangeHandler}
         />
       </SearchBarContainer>
 
-      <FilterList changeHanlder={onChangeHandler} />
+      <FilterList changeHandler={onChangeHandler} />
     </StyledFilterContainer>
   );
 }

@@ -17,15 +17,13 @@ const PopupContainer = styled.div`
   pointer-events: none;
   transition: opacity 0.3s, visible 0.3s;
 
-  ${({ visible }) => {
-    if (visible) {
-      return `
-        opacity: 1;
-        visibility: initial;
-        pointer-events: all;
-      `;
-    }
-  }}
+  ${({ visible }) =>
+    visible &&
+    `
+      opacity: 1;
+      visibility: initial;
+      pointer-events: all;
+    `}
 `;
 
 const StyledPopup = styled.div`
@@ -45,8 +43,8 @@ const StyledPopup = styled.div`
     display: none;
   }
 
-  ${window.screen.width < 930 && `width: 80%;`}
-  ${window.screen.width < 600 && `width: 95%;`}
+  ${window.screen.width < 930 && 'width: 80%'};
+  ${window.screen.width < 600 && 'width: 95%'};
 `;
 
 const CloseIcon = styled.div`
@@ -82,8 +80,8 @@ const CloseIcon = styled.div`
     transform: rotate(45deg);
   }
 
-  ${window.screen.width < 930 && `right: calc(10% - 10px);`}
-  ${window.screen.width < 600 && `right: calc(3% - 10px);`}
+  ${window.screen.width < 930 && 'right: calc(10% - 10px)'};
+  ${window.screen.width < 600 && 'right: calc(3% - 10px)'};
 `;
 
 export function Popup({ visible, content = {}, onClickHandler }) {

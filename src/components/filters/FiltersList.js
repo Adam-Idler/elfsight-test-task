@@ -11,23 +11,23 @@ const StyledFilterList = styled.div`
   }
 `;
 
-export function FilterList({ changeHanlder }) {
+export function FilterList({ changeHandler }) {
   return (
     <StyledFilterList>
       <Filter
         name="status"
         options={statusOptions}
-        changeHanlder={changeHanlder}
+        changeHandler={changeHandler}
       />
       <Filter
         name="gender"
         options={genderOptions}
-        changeHanlder={changeHanlder}
+        changeHandler={changeHandler}
       />
       <Filter
         name="species"
         options={speciesOptions}
-        changeHanlder={changeHanlder}
+        changeHandler={changeHandler}
       />
     </StyledFilterList>
   );

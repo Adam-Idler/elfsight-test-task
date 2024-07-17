@@ -1,13 +1,25 @@
 import styled from 'styled-components';
 
-const defaultColor = '#ccc';
-const defaultFontSize = '16px';
-
 const StyledText = styled.span`
-  color: ${({ _color = defaultColor }) => _color};
-  font-size: ${({ _fontSize = defaultFontSize }) => _fontSize};
+  color: ${({ _color }) => _color};
+  font-size: ${({ _fontSize }) => _fontSize};
 `;
 
-export function Text({ children, style }) {
-  return <StyledText style={style}>{children}</StyledText>;
+export function Text({
+  className,
+  children,
+  style,
+  color = '#ccc',
+  fontSize = '16px'
+}) {
+  return (
+    <StyledText
+      className={className}
+      style={style}
+      _color={color}
+      _fontSize={fontSize}
+    >
+      {children}
+    </StyledText>
+  );
 }

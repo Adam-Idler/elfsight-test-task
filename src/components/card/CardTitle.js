@@ -10,17 +10,18 @@ const CardTitleContainer = styled.div`
 const StyledCardTitle = styled.h2`
   margin-right: 8px;
   transition: color 0.3s;
-  max-width: ${window.screen.width < 450 ? '130px' : '250px'};
-  font-size: ${window.screen.width < 450 ? '18px' : '24px'};
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  max-width: ${window.screen.width < 450 ? '130px' : '250px'};
+  font-size: ${window.screen.width < 450 ? '18px' : '24px'};
 `;
 
 export function CardTitle({ name, gender, className }) {
   return (
     <CardTitleContainer className={className}>
       <StyledCardTitle className="card-title">{name}</StyledCardTitle>
+
       <GenderIcon gender={gender} />
     </CardTitleContainer>
   );

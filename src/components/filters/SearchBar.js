@@ -40,7 +40,7 @@ const SearchBarButton = styled.button`
   cursor: pointer;
   width: 60px;
   height: 40px;
-  border: 0;
+  border: none;
   color: #2f2f2f;
   font-size: 18px;
   font-weight: bold;
@@ -56,15 +56,16 @@ const SearchBarButton = styled.button`
   }
 `;
 
-export function SearchBar({ name, formValues, changeHanlder }) {
+export function SearchBar({ name, formValues, changeHandler }) {
   return (
     <SearchBarContainer>
       <StyledSearchBar
         name={name}
         value={formValues[name]}
         placeholder={`Search by ${name}...`}
-        onChange={changeHanlder}
+        onChange={changeHandler}
       />
+
       <SearchBarButton type="submit">Go</SearchBarButton>
     </SearchBarContainer>
   );

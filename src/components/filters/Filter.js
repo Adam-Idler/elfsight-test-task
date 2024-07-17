@@ -9,14 +9,14 @@ const customStyles = {
   })
 };
 
-export function Filter({ options, name, changeHanlder }) {
+export function Filter({ options, name, changeHandler }) {
   return (
     <Select
       isClearable
       isSearchable={false}
       styles={customStyles}
       placeholder={name}
-      onChange={(option) => changeHanlder({ ...option, name })}
+      onChange={(option) => changeHandler({ ...option, name })}
       options={options}
     />
   );

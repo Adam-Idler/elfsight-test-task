@@ -1,40 +1,35 @@
 import axios from 'axios';
 import { Text } from '../common';
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Loader } from '../Loader';
 
 const StyledPopupEpisodes = styled.div`
   display: flex;
   flex-direction: column;
 
-  ${({ _length }) => {
-    if (_length > 20) {
-      return `
-        display: grid;
-        grid-auto-flow: column;
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: 
-          repeat(${
-            window.screen.width < 600 ? _length : Math.ceil(_length / 2)
-          }, 1fr);
+  ${({ _length }) =>
+    _length > 20 &&
+    css`
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: repeat(
+        ${window.screen.width < 600 ? _length : Math.ceil(_length / 2)},
+        1fr
+      );
 
-        & p {
-          width: 95%;
-          border-bottom: 2px solid #eee;
-        }
+      & p {
+        width: 95%;
+        border-bottom: 2px solid #eee;
+      }
 
-        & span {
-          margin-bottom: ${window.screen.width < 600 ? '10px' : 0};
-        }
-      `;
-    }
-  }}
+      & span {
+        margin-bottom: ${window.screen.width < 600 ? '10px' : 0};
+      }
+    `};
 
-  ${window.screen.width < 600 &&
-  `
-    grid-template-columns: 1fr;
-  `}
+  ${window.screen.width < 600 && 'grid-template-columns: 1fr'};
 `;
 
 const Episode = styled.p`
@@ -54,8 +49,12 @@ export function PopupEpisodes({ episodes }) {
   const [isFetching, setIsFetching] = useState(true);
 
   useEffect(() => {
-    if (!episodes || !episodes.length) return;
+    if (!episodes || !episodes.length) {
+      return;
+    }
+
     setIsFetching(true);
+
     const episodesIds = episodes.map((ep) => ep.match(/\d+$/)[0]);
 
     axios
@@ -70,28 +69,26 @@ export function PopupEpisodes({ episodes }) {
       });
   }, [episodes]);
 
+  if (isFetching) {
+    return <Loader />;
+  }
+
   return (
     <>
-      {isFetching ? (
-        <Loader />
-      ) : (
-        <>
-          <Text>Participated in episodes:</Text>
-          <StyledPopupEpisodes _length={series.length}>
-            {series &&
-              series.map(({ id, name, episode }) => (
-                <Episode _length={series.length} key={id}>
-                  <EpisodeMarking>
-                    {episode
-                      .replace(/S0?(\d+)/, 'Season $1 - ')
-                      .replace(/E0?(\d+)/, 'Ep. $1')}
-                  </EpisodeMarking>
-                  {name}
-                </Episode>
-              ))}
-          </StyledPopupEpisodes>
-        </>
-      )}
+      <Text>Participated in episodes:</Text>
+
+      <StyledPopupEpisodes _length={series.length}>
+        {series?.map(({ id, name, episode }) => (
+          <Episode key={id} _length={series.length}>
+            <EpisodeMarking>
+              {episode
+                .replace(/S0?(\d+)/, 'Season $1 - ')
+                .replace(/E0?(\d+)/, 'Ep. $1')}
+            </EpisodeMarking>
+            {name}
+          </Episode>
+        ))}
+      </StyledPopupEpisodes>
     </>
   );
 }
