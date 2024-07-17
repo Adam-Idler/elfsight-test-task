@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { GenderIcon } from '../GenderIcon';
+import { GenderIcon } from './GenderIcon';
 
 const CardTitleContainer = styled.div`
   display: flex;
@@ -13,7 +13,7 @@ const StyledCardTitle = styled.h2`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: ${window.screen.width < 450 ? '130px' : '250px'};
+  max-width: ${window.screen.width < 450 ? '130px' : '100%'};
   font-size: ${window.screen.width < 450 ? '18px' : '24px'};
 `;
 

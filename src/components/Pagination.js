@@ -42,7 +42,7 @@ export function Pagination({ pages, setApiURL, activePage, setActivePage }) {
           {activePage - 1 !== 0 && (
             <>
               <Page key={0} onClick={() => pageClickHandler(0)}>
-                «First
+                « First
               </Page>
               <Ellipsis>...</Ellipsis>
             </>
@@ -75,7 +75,7 @@ export function Pagination({ pages, setApiURL, activePage, setActivePage }) {
                 key={pages.length - 1}
                 onClick={() => pageClickHandler(pages.length - 1)}
               >
-                Last»
+                Last »
               </Page>
             </>
           )}

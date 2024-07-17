@@ -29,7 +29,7 @@ const StyledCard = styled.div`
 
 const CardImg = styled.img`
   border-radius: 10px 0 0 10px;
-  max-width: ${window.screen.width < 450 ? '150px' : '200px'};
+  max-width: ${window.screen.width < 450 ? '150px' : '250px'};
 `;
 
 export function Card({
