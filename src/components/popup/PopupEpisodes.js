@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Text } from '../common';
 import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { Loader } from '../Loader';
+import { Loader } from '../common';
 
 const StyledPopupEpisodes = styled.div`
   display: flex;

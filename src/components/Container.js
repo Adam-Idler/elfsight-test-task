@@ -10,7 +10,7 @@ export const Container = styled.div`
   padding: 20px 0;
   flex-direction: ${({ isFetching }) => (isFetching ? 'column' : 'row')};
 
-  ${window.screen.width < 1200 && `max-width: 95%;`}
-  ${window.screen.width < 930 && `max-width: 70%;`}
-  ${window.screen.width < 600 && `max-width: 95%;`}
+  ${window.screen.width < 1200 && 'max-width: 95%'};
+  ${window.screen.width < 930 && 'max-width: 70%'};
+  ${window.screen.width < 600 && 'max-width: 95%'};
 `;
