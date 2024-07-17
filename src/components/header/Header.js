@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Logo } from './Logo';
-import { FilterContainer } from '../filters';
 
 export const HeaderContainer = styled.div`
   width: 100%;
@@ -19,8 +18,6 @@ export function Header() {
   return (
     <HeaderContainer>
       <Logo />
-
-      <FilterContainer />
     </HeaderContainer>
   );
 }
