@@ -4,9 +4,9 @@ import { ReactComponent as Genderless } from '../../assets/genders/genderless.sv
 
 export function GenderIcon({ gender }) {
   switch (gender) {
-    case 'Male':
+    case 'male':
       return <Male width={20} height={20} fill="#33b3c8" title="Male" />;
-    case 'Female':
+    case 'female':
       return <Female width={24} height={24} fill="pink" title="Female" />;
     case 'genderless':
       return (
