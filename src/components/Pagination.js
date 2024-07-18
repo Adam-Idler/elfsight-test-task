@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import { useData } from './providers';
 import { useEffect, useState } from 'react';
+import { useData } from './providers';
 
 export function Pagination() {
   const [pages, setPages] = useState([]);

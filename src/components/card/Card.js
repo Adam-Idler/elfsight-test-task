@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import { CardInfo, CardStatus, CardTitle } from './';
+import { CardInfo } from './CardInfo';
+import { CardStatus } from './CardStatus';
+import { CardTitle } from './CardTitle';
 
 export function Card({
   status,
