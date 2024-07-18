@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { CardInfo, CardStatus, CardTitle } from './';
 
 export function Card({
-  id,
   status,
   name,
   species,
@@ -12,7 +11,7 @@ export function Card({
   onClickHandler
 }) {
   return (
-    <StyledCard key={id} onClick={onClickHandler}>
+    <StyledCard onClick={onClickHandler}>
       <CardImg src={image} alt={name} />
 
       <CardInfo>
