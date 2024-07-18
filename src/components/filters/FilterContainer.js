@@ -1,7 +1,8 @@
 import { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { FilterList, SearchBar } from './';
 import { useData } from '../providers';
+import { FilterList } from './FiltersList';
+import { SearchBar } from './SearchBar';
 
 const defaultFormValues = {
   name: '',

@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 import { Popup } from './popup';
-import { useState } from 'react';
 import { useData } from './providers';
 import { Card } from './card';
 

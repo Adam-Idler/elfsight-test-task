@@ -1,8 +1,7 @@
-import axios from 'axios';
-import { Text } from '../common';
 import { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { Loader } from '../common';
+import axios from 'axios';
+import { Loader, Text } from '../common';
 
 const API_EPISODES_URL = 'https://rickandmortyapi.com/api/episode';
 
