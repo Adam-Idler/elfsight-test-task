@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 import { useData } from './providers';
+import { useEffect, useState } from 'react';
 
 export function Pagination() {
+  const [pages, setPages] = useState([]);
   const { apiURL, info, activePage, setActivePage, setApiURL } = useData();
 
   const pageClickHandler = (index) => {
@@ -10,15 +12,17 @@ export function Pagination() {
     setApiURL(pages[index]);
   };
 
-  const pages = [];
+  useEffect(() => {
+    const createdPages = Array.from({ length: info.pages }, (_, i) => {
+      const URLWithPage = new URL(apiURL);
 
-  for (let i = 0; i < info.pages; i++) {
-    const apiURLWithoutPage = apiURL.replace(/&?page=\d+/, '');
-    const separator = /\?/g.test(apiURL) ? '&' : '?';
-    const pageURL = apiURLWithoutPage + separator + `page=${i + 1}`;
+      URLWithPage.searchParams.set('page', i + 1);
 
-    pages.push(pageURL);
-  }
+      return URLWithPage;
+    });
+
+    setPages(createdPages);
+  }, [apiURL, info]);
 
   if (pages.length <= 1) return null;
 

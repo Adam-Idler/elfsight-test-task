@@ -12,7 +12,7 @@ export function Card({
   onClickHandler
 }) {
   return (
-    <StyledCard key={id} onClick={onClickHandler}>
+    <StyledCard onClick={onClickHandler}>
       <CardImg src={image} alt={name} />
 
       <CardInfo>
