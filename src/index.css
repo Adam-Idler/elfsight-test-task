@@ -8,7 +8,3 @@ body {
   font-family: 'Roboto';
   background-color: #001832;
 }
-
-html, body, #root {
-  height: 100%;
-}

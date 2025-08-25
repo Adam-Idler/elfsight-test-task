@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Pagination, ItemsGrid, useData, Header, AppState } from './components';
+import { ElfsightWidget } from 'react-elfsight-widget';
 
 export function App() {
   const { isFetching, isError } = useData();
@@ -17,6 +18,12 @@ export function App() {
           <Pagination />
         </>
       )}
+
+      <ElfsightWidget
+        widgetId="535fcf90-6289-4de6-b9d2-254ad531ba61"
+        style={{ margin: '20px 0' }}
+        lazy
+      />
     </Main>
   );
 }
